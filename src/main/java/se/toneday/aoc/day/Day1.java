@@ -36,11 +36,14 @@ public class Day1 implements Day {
         var left = ListUtils.getEvenIndexAsList(numbers);
         var right = ListUtils.getOddIndexAsList(numbers);
 
-        task1(left, right);
-        task2(left, right);
+        int task1Sum = task1(left, right);
+        int task2Sum = task2(left, right);
+
+        System.out.println("Day 1 / Task 1 / The sum of the difference are: " + task1Sum);
+        System.out.println("Day 1 / Task 2 / The total similarity score is: " + task2Sum);
     }
 
-    public void task1(List<Integer> left, List<Integer> right) {
+    public int task1(List<Integer> left, List<Integer> right) {
 
         left.sort(Comparator.naturalOrder());
         right.sort(Comparator.naturalOrder());
@@ -51,10 +54,10 @@ public class Day1 implements Day {
             sum +=  Math.abs(left.get(i) - right.get(i));
         }
 
-        System.out.println("The sum of the difference are: " + sum);
+        return sum;
     }
 
-    public void task2(List<Integer> left, List<Integer> right) {
+    public int task2(List<Integer> left, List<Integer> right) {
 
         int sum = 0;
 
@@ -63,7 +66,7 @@ public class Day1 implements Day {
             sum += amountOfTimes * number;
         }
 
-        System.out.println("The total simularity score is: " + sum);
+        return sum;
     }
 
 

@@ -1,10 +1,11 @@
 package se.toneday.aoc.day;
 
 import se.toneday.aoc.input.Input;
-import se.toneday.aoc.utils.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static se.toneday.aoc.utils.StringUtils.replacePatternFromStringWithReplacement;
 
 /*
  * DAY 3
@@ -35,13 +36,15 @@ public class Day3 implements Day {
         String input = Input.getStringSingle("3");
 
         // Task 1:
-        System.out.println("The sum of the multiplication for task 1 is: " + getSum(input));
+        long task1Sum = getSum(input);
 
         // Task 2:
-        input = StringUtils.replacePatternFromStringWithReplacement(input, "don't\\(\\).*?do\\(\\)", "");
-        input = StringUtils.replacePatternFromStringWithReplacement(input, "don't\\(\\).*", "");
+        input = replacePatternFromStringWithReplacement(input, "don't\\(\\).*?do\\(\\)", "");
+        input = replacePatternFromStringWithReplacement(input, "don't\\(\\).*", "");
+        long task2Sum = getSum(input);
 
-        System.out.println("The sum of the multiplication for task 2 is: " + getSum(input));
+        System.out.println("Day 3 / Task 1 / The sum of the multiplication is: " + task1Sum);
+        System.out.println("Day 3 / Task 2 / The sum of the multiplication is: " + task2Sum);
 
     }
 

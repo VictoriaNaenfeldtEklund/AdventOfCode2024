@@ -35,11 +35,14 @@ public class Day2 implements Day {
         List<String> input = Input.listStringRow("2");
         List<List<Integer>> reports = mapEachStringToListOfInteger(input);
 
-        task1(reports);
-        task2(reports);
+        int sumTask1 = task1(reports);
+        int sumTask2 = task2(reports);
+
+        System.out.println("Day 2 / Task 1 / The number of safe reports: " + sumTask1);
+        System.out.println("Day 2 / Task 2 / The number of safe reports: " + sumTask2);
     }
 
-    private static void task1(List<List<Integer>> reports) {
+    private int task1(List<List<Integer>> reports) {
 
         int sumOfSafeReports = 0;
 
@@ -51,10 +54,10 @@ public class Day2 implements Day {
             }
         }
 
-        System.out.println("The number of safe reports task 1: " + sumOfSafeReports);
+        return sumOfSafeReports;
     }
 
-    private static void task2(List<List<Integer>> reports) {
+    private int task2(List<List<Integer>> reports) {
 
         int sumOfSafeReports = 0;
 
@@ -74,6 +77,6 @@ public class Day2 implements Day {
             }
         }
 
-        System.out.println("The number of safe reports task 2: " + sumOfSafeReports);
+        return sumOfSafeReports;
     }
 }
