@@ -39,8 +39,8 @@ public class Day1 implements Day {
         int task1Sum = task1(left, right);
         int task2Sum = task2(left, right);
 
-        System.out.println("Day 1 / Task 1 / The sum of the difference are: " + task1Sum);
-        System.out.println("Day 1 / Task 2 / The total similarity score is: " + task2Sum);
+        System.out.println("Day 1. Task 1 - The sum of the difference are: " + task1Sum);
+        System.out.println("Day 1. Task 2 - The total similarity score is: " + task2Sum);
     }
 
     public int task1(List<Integer> left, List<Integer> right) {

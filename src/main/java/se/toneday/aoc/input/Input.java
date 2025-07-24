@@ -25,7 +25,7 @@ public class Input {
             scanner.close();
 
         } catch (NullPointerException np){
-            System.out.println("Could not create file from url");
+            System.out.println("Could not read file from url");
         } catch (FileNotFoundException e){
             System.out.println("Scanner source not found");
         }
@@ -48,7 +48,7 @@ public class Input {
             scanner.close();
 
         } catch (NullPointerException np){
-            System.out.println("Could not create file from url");
+            System.out.println("Could not read file from url");
         } catch (FileNotFoundException e){
             System.out.println("Scanner source not found");
         }
@@ -71,7 +71,7 @@ public class Input {
             scanner.close();
 
         } catch (NullPointerException np){
-            System.out.println("Could not create file from url");
+            System.out.println("Could not read file from url");
         } catch (FileNotFoundException e){
             System.out.println("Scanner source not found");
         }

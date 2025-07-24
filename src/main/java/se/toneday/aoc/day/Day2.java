@@ -38,8 +38,8 @@ public class Day2 implements Day {
         int sumTask1 = task1(reports);
         int sumTask2 = task2(reports);
 
-        System.out.println("Day 2 / Task 1 / The number of safe reports: " + sumTask1);
-        System.out.println("Day 2 / Task 2 / The number of safe reports: " + sumTask2);
+        System.out.println("Day 2. Task 1 - The number of safe reports: " + sumTask1);
+        System.out.println("Day 2. Task 2 - The number of safe reports: " + sumTask2);
     }
 
     private int task1(List<List<Integer>> reports) {

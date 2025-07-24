@@ -43,8 +43,8 @@ public class Day3 implements Day {
         input = replacePatternFromStringWithReplacement(input, "don't\\(\\).*", "");
         long task2Sum = getSum(input);
 
-        System.out.println("Day 3 / Task 1 / The sum of the multiplication is: " + task1Sum);
-        System.out.println("Day 3 / Task 2 / The sum of the multiplication is: " + task2Sum);
+        System.out.println("Day 3. Task 1 - The sum of the multiplication is: " + task1Sum);
+        System.out.println("Day 3. Task 2 - The sum of the multiplication is: " + task2Sum);
 
     }
 
