@@ -11,7 +11,7 @@ public class Main {
 
         List<Day> days = getDaysList();
 
-        days.get(3).run();
+        days.get(4).run();
     }
 
     public static List<Day> getDaysList(){
@@ -21,6 +21,7 @@ public class Main {
         days.add(new Day1());
         days.add(new Day2());
         days.add(new Day3());
+        days.add(new Day4());
 
         return days;
     }
