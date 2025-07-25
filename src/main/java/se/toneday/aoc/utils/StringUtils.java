@@ -17,4 +17,8 @@ public class StringUtils {
         return string;
     }
 
+    public static boolean isEven(String string) {
+        return string.length() % 2 == 0;
+    }
+
 }

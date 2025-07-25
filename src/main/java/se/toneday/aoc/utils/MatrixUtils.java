@@ -35,89 +35,67 @@ public class MatrixUtils {
         return points;
     }
 
-    public static int getTimesStringIsPresentInAllDirectionsFromStartPoint(char[][] matrix, Point startPoint, String stringToSearchFor) {
+    public static List<Point> getStartPointsWhereStringIsPresentInAnyDirection(char[][] matrix, List<Point> startPoints, String stringToSearchFor) {
 
-        int startRow = startPoint.x();
-        int startCol = startPoint.y();
+        List<Point> startPointsWhereStringIsPresent = new ArrayList<>();
 
-        int sumOfPresentStrings = 0;
+        for(Point startPoint : startPoints) {
 
-        if(isStringPresentEast(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
+            int startRow = startPoint.x();
+            int startCol = startPoint.y();
+
+
+            if(isStringPresentEast(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentSouthEast(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentSouth(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentSouthWest(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentWest(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentNorthWest(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentNorth(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
+
+            if(isStringPresentNorthEast(matrix, stringToSearchFor, startRow, startCol)){
+                startPointsWhereStringIsPresent.add(new Point(startRow, startCol));
+            }
         }
 
-        if(isStringPresentSouthEast(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentSouth(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentSouthWest(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentWest(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentNorthWest(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentNorth(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentNorthEast(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        return sumOfPresentStrings;
-    }
-
-    public static int getTimesStringIsPresentInAllDiagonalDirectionsFromStartPoint(char[][] matrix, Point startPoint, String stringToSearchFor) {
-
-        int startRow = startPoint.x();
-        int startCol = startPoint.y();
-        int sumOfPresentStrings = 0;
-
-        if(isStringPresentSouthEast(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentSouthWest(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentNorthWest(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        if(isStringPresentNorthEast(matrix, stringToSearchFor, startRow, startCol)){
-            sumOfPresentStrings++;
-        }
-
-        return sumOfPresentStrings;
-
+        return startPointsWhereStringIsPresent;
     }
 
     /*
     Returns the position where the middle character of an uneven string placed on the diagonal is present in a matrix.
-    Ex: Looking for the word MAS in this 3x3 grid would return a list with the Point(2,2) for the middle char A:s position in the matrix
+    Ex: Looking for the word MAS in this 3x3 grid would return a list with the Point(1,1) for the middle char A:s position in the matrix
     I I S
     I A I
     M I I
      */
     public static List<Point> getDiagonalStringMiddlePointsInMatrix(char[][] matrix, List<Point> startPoints, String stringToSearchFor) throws IllegalArgumentException {
 
-        if((stringToSearchFor.length() + 1) % 2 == 0) {
+        if(StringUtils.isEven(stringToSearchFor)) {
             throw new IllegalArgumentException("stringToSearchFor must not be even");
         }
 
         List<Point> middlePoints = new ArrayList<>();
-        int stepsToMiddleChar = (stringToSearchFor.length() + 1) / 2;
+        int stepsToMiddleChar = stringToSearchFor.length() / 2;
 
         for (Point startPoint : startPoints) {
 
@@ -148,7 +126,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, startRow, ++startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow, startCol++)) {
                 return false;
             }
         }
@@ -158,17 +136,13 @@ public class MatrixUtils {
 
     public static boolean isStringPresentSouthEast(char[][] matrix, String stringToSearchFor, int startRow, int startCol) {
 
-        // go through all chars in the string
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            // Check if the character is not present in the next east index, in that case, return false
-            // isCharPresent checks for IndexOutOfBounds
-            if (!isCharPresent(matrix, charToSearchFor, ++startRow, ++startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow++, startCol++)) {
                 return false;
             }
         }
 
-        // if all characters is present in the east direction, return true.
         return true;
     }
 
@@ -176,7 +150,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, ++startRow, startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow++, startCol)) {
                 return false;
             }
         }
@@ -188,7 +162,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, ++startRow, --startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow++, startCol--)) {
                 return false;
             }
         }
@@ -200,7 +174,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, startRow, --startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow, startCol--)) {
                 return false;
             }
         }
@@ -212,7 +186,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, --startRow, --startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow--, startCol--)) {
                 return false;
             }
         }
@@ -224,7 +198,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, --startRow, startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow--, startCol)) {
                 return false;
             }
         }
@@ -236,7 +210,7 @@ public class MatrixUtils {
 
         for (char charToSearchFor : stringToSearchFor.toCharArray()) {
 
-            if (!isCharPresent(matrix, charToSearchFor, --startRow, ++startCol)) {
+            if (!isCharPresent(matrix, charToSearchFor, startRow--, startCol++)) {
                 return false;
             }
         }
